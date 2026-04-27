@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>KOMBIT SMAN 1 Ciampel | Komunitas Belajar IT Terpercaya</title>
+    <meta name="google-site-verification" content="Pck194aLMwD2Spk3tNoWhzRXd7RhN7VLlnKyKS33C54" />
+    
+    <meta name="description" content="KOMBIT (Komunitas Belajar IT) SMAN 1 Ciampel. Wadah kreatif siswa mengeksplorasi coding, desain grafis, dan inovasi digital masa depan.">
+    <meta name="keywords" content="KOMBIT, SMAN 1 Ciampel, Ekstrakurikuler IT, Belajar Coding, Desain Grafis Ciampel">
+    <meta name="author" content="ZenTeam">
+    
+    <meta property="og:title" content="KOMBIT SMAN 1 Ciampel - Inovasi Digital Siswa">
+    <meta property="og:description" content="Bergabunglah dengan komunitas IT terbaik di SMAN 1 Ciampel. Belajar coding dan teknologi gratis!">
+    <meta property="og:image" content="https://www.image2url.com/r2/default/images/image-to-webp-1777196773558-1db4ec34-29e3-4900-9f5f-b3fd48028b88.webp">
+    <meta property="og:url" content="https://kombit-sman-1-ciampel.firebaseapp.com">
+    <meta property="og:type" content="website">
+
+    <link rel="icon" type="image/webp" href="https://www.image2url.com/r2/default/images/image-to-webp-1777196773558-1db4ec34-29e3-4900-9f5f-b3fd48028b88.webp">
+    <link rel="apple-touch-icon" href="https://www.image2url.com/r2/default/images/image-to-webp-1777196773558-1db4ec34-29e3-4900-9f5f-b3fd48028b88.webp">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <style>
+        :root {
+            --primary: #007bff;
+            --primary-hover: #0056b3;
+            --dark: #2d3436;
+            --light: #f1f2f6;
+            --white: #ffffff;
+            --danger: #d63031;
+            --success: #27ae60;
+            --speed: 0.3s;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Navbar --- */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            background: var(--white); padding: 12px 5%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky; top: 0; z-index: 1000;
+        }
+        .nav-left { display: flex; align-items: center; gap: 15px; }
+        .menu-toggle { font-size: 22px; cursor: pointer; color: var(--dark); }
+        #school-logo { height: 45px; border-radius: 5px; }
+        .brand { font-size: 24px; font-weight: 800; color: var(--primary); text-decoration: none; letter-spacing: 1px; }
+
+        .btn { padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-weight: 600; transition: 0.3s; font-size: 14px; }
+        .btn-blue { background: var(--primary); color: white; }
+        .btn-success { background: var(--success); color: white; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed; top: 0; left: -280px; width: 280px; height: 100%;
+            background: var(--white); box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+            transition: var(--speed) ease-in-out; z-index: 2000; padding-top: 80px;
+        }
+        .sidebar.active { left: 0; }
+        .sidebar a {
+            display: flex; align-items: center; padding: 15px 30px; color: var(--dark);
+            text-decoration: none; font-weight: 500; border-left: 5px solid transparent; cursor: pointer;
+        }
+        .sidebar a:hover { background: #f0f7ff; border-left-color: var(--primary); color: var(--primary); }
+        .sidebar-overlay {
+            position: fixed; top:0; left:0; width:100%; height:100%;
+            background: rgba(0,0,0,0.4); display: none; z-index: 1500;
+        }
+
+        /* --- Content Layout --- */
+        .tab-content { display: none; padding: 40px 8%; min-height: 85vh; }
+        .tab-content.active { display: block; }
+
+        h1 { font-size: 2.2rem; text-align: center; color: var(--primary); margin-bottom: 40px; }
+        
+        /* Protection Overlay */
+        .protected-screen {
+            text-align: center;
+            padding: 50px 20px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .protected-screen i { font-size: 80px; color: #ccc; margin-bottom: 20px; }
+
+        .home-info-wrapper { 
+            display: grid; grid-template-columns: 1fr; gap: 25px; 
+        }
+        @media (min-width: 992px) {
+            .home-info-wrapper { grid-template-columns: repeat(4, 1fr); gap: 45px; }
+        }
+
+        .info-card { 
+            background: white; padding: 25px; border-radius: 15px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
+            transition: 0.3s; border-top: 5px solid var(--primary);
+            display: flex; flex-direction: column;
+        }
+        .info-card:hover { transform: translateY(-10px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+        .info-card h3 { color: var(--primary); margin-top: 0; font-size: 1.1rem; margin-bottom: 12px; }
+        .info-card p { font-size: 14px; text-align: justify; margin-bottom: 0; }
+
+        /* Profil Section */
+        .profile-container {
+            max-width: 500px; margin: 0 auto; background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .profile-header { text-align: center; margin-bottom: 30px; }
+        .profile-header i { font-size: 60px; color: var(--primary); margin-bottom: 10px; }
+
+        /* Doc/Task Sections */
+        .doc-intro { background: #eef6ff; padding: 20px; border-radius: 15px; margin-bottom: 30px; border-left: 6px solid var(--primary); }
+        .doc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; }
+        .doc-card { aspect-ratio: 1/1; overflow: hidden; border-radius: 12px; border: 1px solid #ddd; position: relative; }
+        .doc-card img { width: 100%; height: 100%; object-fit: cover; }
+
+        .task-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.08); margin-bottom: 25px; }
+        .task-card img { width: 100%; max-height: 500px; object-fit: contain; background: #f9f9f9; }
+        .task-body { padding: 20px; text-align: center; border-top: 1px solid #eee; }
+
+        /* Modals & Pass Toggle */
+        .modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.6); z-index: 3000; justify-content: center; align-items: center; }
+        .modal-box { background: white; padding: 30px; border-radius: 20px; width: 90%; max-width: 400px; }
+        .password-container { position: relative; width: 100%; }
+        .toggle-password { position: absolute; right: 12px; top: 12px; cursor: pointer; color: #777; transition: 0.3s; }
+        .toggle-password:hover { color: var(--primary); }
+
+        .fab { position: fixed; bottom: 35px; right: 35px; width: 65px; height: 65px; background: var(--primary); color: white; border-radius: 50%; display: none; justify-content: center; align-items: center; font-size: 26px; cursor: pointer; box-shadow: 0 8px 20px rgba(0,123,255,0.4); z-index: 1000; }
+        
+        input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; margin-bottom: 15px; box-sizing: border-box; }
+        .hidden { display: none; }
+        .loader { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(255,255,255,0.9); display: none; justify-content: center; align-items: center; z-index: 9999; flex-direction: column; }
+    </style>
+</head>
+<body>
+
+    <div id="loader" class="loader">
+        <i class="fa-solid fa-circle-notch fa-spin" style="color: var(--primary); font-size: 50px;"></i>
+        <p style="margin-top: 15px; font-weight: bold;">Memproses data KOMBIT...</p>
+    </div>
+
+    <div id="sidebar-overlay" class="sidebar-overlay" onclick="toggleSidebar()"></div>
+    <div id="sidebar" class="sidebar">
+        <a onclick="switchTab('home')"><i class="fa-solid fa-house"></i> &nbsp;&nbsp; Beranda</a>
+        <a onclick="switchTab('anggota')"><i class="fa-solid fa-users"></i> &nbsp;&nbsp; Anggota</a>
+        <a onclick="switchTab('dokumentasi')"><i class="fa-solid fa-camera-retro"></i> &nbsp;&nbsp; Dokumentasi</a>
+        <a onclick="switchTab('tugas')"><i class="fa-solid fa-laptop-code"></i> &nbsp;&nbsp; Tugas & Proyek</a>
+        <div id="user-menu" class="hidden">
+            <hr style="border:0; border-top: 1px solid #eee;">
+            <a onclick="switchTab('profil')"><i class="fa-solid fa-user-gear"></i> &nbsp;&nbsp; Profil Saya</a>
+        </div>
+        <div id="admin-menu" class="hidden">
+            <a onclick="switchTab('admin')" style="color: var(--primary);"><i class="fa-solid fa-screwdriver-wrench"></i> &nbsp;&nbsp; Admin Center</a>
+        </div>
+    </div>
+
+    <nav>
+        <div class="nav-left">
+            <i class="fa-solid fa-bars menu-toggle" onclick="toggleSidebar()"></i>
+            <img id="school-logo" src="https://www.image2url.com/r2/default/images/image-to-webp-1777196773558-1db4ec34-29e3-4900-9f5f-b3fd48028b88.webp" alt="Logo SMAN 1 Ciampel">
+            <span class="brand">KOMBIT</span>
+        </div>
+        <div id="auth-btn-container">
+            <button class="btn btn-blue" onclick="openModal('auth-modal')">Login Anggota</button>
+        </div>
+        <div id="logged-tag" class="hidden">
+            <span id="user-display" style="background:#e8f0fe; color:var(--primary); padding:8px 15px; border-radius:8px; font-weight:bold; cursor:pointer;" onclick="switchTab('profil')"></span>
+        </div>
+    </nav>
+
+    <div id="fab-add" class="fab" onclick="openAddModal()">
+        <i class="fa-solid fa-plus"></i>
+    </div>
+
+    <div id="home" class="tab-content active">
+        <h1 class="animate__animated animate__fadeInDown">Selamat Datang di KOMBIT SMAN 1 Ciampel</h1>
+        <div class="home-info-wrapper">
+            <div class="info-card animate__animated animate__fadeInUp" style="animation-delay: 0.1s;">
+                <h3><i class="fa-solid fa-circle-info"></i> Apa itu KOMBIT?</h3>
+                <p>Selamat datang di KOMBIT (Komunitas Belajar IT) SMA N 1 Ciampel! Di era digital yang berkembang sangat cepat ini, kami percaya bahwa teknologi bukan hanya untuk dilihat, tapi untuk dikuasai. KOMBIT hadir sebagai wadah bagi kamu yang ingin menjelajahi dunia coding, desain grafis, hingga inovasi digital lainnya secara mendalam namun tetap seru dan mengasyikkan.</p>
+            </div>
+            <div class="info-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+                <h3><i class="fa-solid fa-user-plus"></i> Kenapa Harus Join?</h3>
+                <p>Kami sadar bahwa belajar IT seringkali dianggap sulit atau mahal, itulah mengapa KOMBIT hadir dengan prinsip terbuka untuk siapa saja tanpa dipungut biaya sepeser pun. Di sini, kita tidak hanya belajar teori di depan layar, tapi kita belajar untuk berkolaborasi dan menciptakan proyek nyata yang membanggakan bersama teman-teman sefrekuensi.</p>
+            </div>
+            <div class="info-card animate__animated animate__fadeInUp" style="animation-delay: 0.3s;">
+                <h3><i class="fa-solid fa-award"></i> Keuntungan</h3>
+                <p>Tidak perlu punya laptop canggih atau harus jago matematika terlebih dahulu, karena yang kamu butuhkan hanyalah rasa ingin tahu yang besar. Bangun portofolio yang berguna untuk masa depanmu bersama keluarga besar KOMBIT dan jadilah bagian dari revolusi teknologi di sekolah kita!</p>
+            </div>
+            <div class="info-card animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+                <h3><i class="fa-solid fa-rocket"></i> Visi Kami</h3>
+                <p>Gaskeun, kembangkan potensi digitalmu bersama kami di SMA N 1 Ciampel. Tempat di mana ide-idemu diubah menjadi barisan kode dan kreativitasmu menjadi solusi teknologi masa depan yang nyata, solutif, serta inovatif bagi masyarakat luas.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="anggota" class="tab-content">
+        <h1>Struktur Organisasi</h1>
+        <div id="container-anggota" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap:15px;"></div>
+    </div>
+
+    <div id="dokumentasi" class="tab-content">
+        <div id="doc-unlocked">
+            <h1>Dokumentasi Kegiatan</h1>
+            <div class="doc-intro">
+                <p><strong>Arsip Perjalanan Kami:</strong> Halaman ini merangkum kumpulan dokumentasi visual dari seluruh kegiatan dan proyek kolaborasi anggota KOMBIT.</p>
+            </div>
+            <div id="container-docs" class="doc-grid"></div>
+        </div>
+    </div>
+
+    <div id="tugas" class="tab-content">
+        <div id="task-locked" class="protected-screen animate__animated animate__fadeIn">
+            <i class="fa-solid fa-shield-halved"></i>
+            <h2>Halaman Terkunci</h2>
+            <p>Arsip proyek dan tugas hanya dapat diakses oleh anggota resmi yang sudah login.</p>
+            <button class="btn btn-blue" onclick="openModal('auth-modal')">Login Anggota</button>
+        </div>
+        <div id="task-unlocked" class="hidden">
+            <h1>Arsip Proyek Siswa</h1>
+            <div id="container-tugas"></div>
+        </div>
+    </div>
+
+    <div id="profil" class="tab-content">
+        <h1>Pengaturan Akun</h1>
+        <div class="profile-container animate__animated animate__fadeInUp">
+            <div class="profile-header">
+                <i class="fa-solid fa-circle-user"></i>
+                <h2 id="profile-title">Data Anggota</h2>
+            </div>
+            
+            <label style="font-weight: bold; font-size: 14px;">Username</label>
+            <input type="text" id="prof-user" placeholder="Username baru">
+            
+            <label style="font-weight: bold; font-size: 14px;">Umur</label>
+            <input type="number" id="prof-age" placeholder="Umur kamu">
+            
+            <label style="font-weight: bold; font-size: 14px;">Password Baru</label>
+            <div class="password-container">
+                <input type="password" id="prof-pass" placeholder="Password baru">
+                <i class="fa-solid fa-eye toggle-password" onclick="togglePassView('prof-pass', this)"></i>
+            </div>
+            
+            <button class="btn btn-blue" style="width:100%; margin-top:10px;" onclick="updateProfile()">Simpan Perubahan</button>
+            <button class="btn btn-danger" style="width:100%; margin-top:10px; background:#e74c3c; color:white;" onclick="location.reload()">Keluar / Logout</button>
+        </div>
+    </div>
+
+    <div id="admin" class="tab-content">
+        <h1>Admin Panel</h1>
+        <div style="background:white; padding:30px; border-radius:15px; border-top:5px solid var(--primary);">
+            <h3>Tambah Anggota Baru</h3>
+            <input type="text" id="reg-user" placeholder="Username Baru">
+            <div class="password-container">
+                <input type="password" id="reg-pass" placeholder="Password Baru">
+                <i class="fa-solid fa-eye toggle-password" onclick="togglePassView('reg-pass', this)"></i>
+            </div>
+            <button class="btn btn-blue" style="width:100%;" onclick="registerAccount()">Daftarkan Akun</button>
+        </div>
+    </div>
+
+    <div id="auth-modal" class="modal">
+        <div class="modal-box animate__animated animate__zoomIn">
+            <h3 style="margin-top:0; color:var(--primary); text-align:center;">Portal Login</h3>
+            <input type="text" id="auth-user" placeholder="Username">
+            <div class="password-container">
+                <input type="password" id="auth-pass" placeholder="Password">
+                <i class="fa-solid fa-eye toggle-password" onclick="togglePassView('auth-pass', this)"></i>
+            </div>
+            <button class="btn btn-blue" style="width:100%;" onclick="handleAuth()">Masuk</button>
+            <button class="btn" style="width:100%; margin-top:10px;" onclick="closeModal('auth-modal')">Batal</button>
+        </div>
+    </div>
+
+    <div id="add-modal" class="modal">
+        <div class="modal-box animate__animated animate__zoomIn">
+            <h3 id="add-label">Upload Data</h3>
+            <div id="form-member" class="hidden">
+                <input type="text" id="add-name" placeholder="Nama Lengkap">
+                <input type="text" id="add-role" placeholder="Jabatan">
+            </div>
+            <div id="form-file" class="hidden">
+                <input type="text" id="file-title" placeholder="Judul Proyek">
+                <input type="file" id="inp-file" accept="image/*">
+            </div>
+            <button class="btn btn-blue" style="width:100%;" onclick="saveData()">Simpan</button>
+            <button class="btn" style="width:100%; margin-top:10px;" onclick="closeModal('add-modal')">Batal</button>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+        import { getDatabase, ref, set, push, onValue, get, child, remove } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBzgH_m_c5eByRtq-S4FgRJA9fbRkcucCw",
+            authDomain: "kombit-sman-1-ciampel.firebaseapp.com",
+            projectId: "kombit-sman-1-ciampel",
+            databaseURL: "https://kombit-sman-1-ciampel-default-rtdb.asia-southeast1.firebasedatabase.app"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const CLOUD_NAME = "dkdrswniz";
+        const UPLOAD_PRESET = "Kombit"; 
+
+        let isAdmin = false;
+        let isLoggedIn = false;
+        let currentUser = "";
+        let activeTab = 'home';
+
+        const toggleLoader = (s) => document.getElementById('loader').style.display = s ? 'flex' : 'none';
+
+        window.togglePassView = (id, icon) => {
+            const input = document.getElementById(id);
+            if(input.type === 'password') {
+                input.type = 'text';
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        };
+
+        window.toggleSidebar = () => {
+            const sb = document.getElementById('sidebar');
+            const ov = document.getElementById('sidebar-overlay');
+            sb.classList.toggle('active');
+            ov.style.display = sb.classList.contains('active') ? 'block' : 'none';
+        };
+
+        window.switchTab = (id) => {
+            activeTab = id;
+            document.querySelectorAll('.tab-content').forEach(t => {
+                t.classList.remove('active', 'animate__animated', 'animate__fadeIn');
+            });
+            const target = document.getElementById(id);
+            target.classList.add('active', 'animate__animated', 'animate__fadeIn');
+            
+            // FAB Visibility
+            document.getElementById('fab-add').style.display = (isAdmin && id !== 'home' && id !== 'admin' && id !== 'profil') ? 'flex' : 'none';
+            
+            if(window.innerWidth < 768) toggleSidebar();
+        };
+
+        window.openModal = (id) => document.getElementById(id).style.display = 'flex';
+        window.closeModal = (id) => document.getElementById(id).style.display = 'none';
+
+        window.handleAuth = async () => {
+            const u = document.getElementById('auth-user').value.toLowerCase().trim();
+            const p = document.getElementById('auth-pass').value;
+            if(!u || !p) { alert("Isi username & password!"); return; }
+            
+            toggleLoader(true);
+            try {
+                const admSnap = await get(child(ref(db), 'admin_accounts/' + u));
+                if(admSnap.exists() && admSnap.val().password === p) {
+                    isAdmin = true; 
+                    isLoggedIn = true;
+                    currentUser = u;
+                    loginSuccess("ADMIN", true, admSnap.val()); 
+                    toggleLoader(false); 
+                    return;
+                }
+                const userSnap = await get(child(ref(db), 'user_accounts/' + u));
+                if(userSnap.exists() && userSnap.val().password === p) {
+                    isAdmin = false; 
+                    isLoggedIn = true;
+                    currentUser = u;
+                    loginSuccess(u.toUpperCase(), false, userSnap.val()); 
+                    toggleLoader(false); 
+                    return;
+                }
+                alert("Login gagal! Cek username/password.");
+            } catch(e) { alert("Error database!"); }
+            toggleLoader(false);
+        };
+
+        const loginSuccess = (name, isAdm, userData) => {
+            document.getElementById('logged-tag').classList.remove('hidden');
+            document.getElementById('auth-btn-container').classList.add('hidden');
+            document.getElementById('user-display').innerText = name;
+            
+            // Unlock Content & Menu
+            document.getElementById('task-locked').classList.add('hidden');
+            document.getElementById('task-unlocked').classList.remove('hidden');
+            document.getElementById('user-menu').classList.remove('hidden');
+            
+            // Fill Profile Data
+            document.getElementById('prof-user').value = currentUser;
+            document.getElementById('prof-age').value = userData.age || "";
+            document.getElementById('prof-pass').value = userData.password || "";
+
+            if(isAdm) document.getElementById('admin-menu').classList.remove('hidden');
+            closeModal('auth-modal');
+            alert("Berhasil Login! Selamat datang " + name);
+        };
+
+        window.updateProfile = async () => {
+            if(!isLoggedIn) return;
+            const newUser = document.getElementById('prof-user').value.toLowerCase().trim();
+            const newAge = document.getElementById('prof-age').value;
+            const newPass = document.getElementById('prof-pass').value;
+
+            if(!newUser || !newPass) { alert("Username dan Password tidak boleh kosong!"); return; }
+
+            toggleLoader(true);
+            try {
+                const path = isAdmin ? 'admin_accounts/' : 'user_accounts/';
+                const oldDataRef = ref(db, path + currentUser);
+                
+                // Jika username berubah, pindahkan data (hapus lama, buat baru)
+                if(newUser !== currentUser) {
+                    await set(ref(db, path + newUser), { password: newPass, age: newAge });
+                    await remove(oldDataRef);
+                    currentUser = newUser;
+                } else {
+                    await set(oldDataRef, { password: newPass, age: newAge });
+                }
+                
+                document.getElementById('user-display').innerText = isAdmin ? "ADMIN" : currentUser.toUpperCase();
+                alert("Profil berhasil diperbarui!");
+            } catch(e) {
+                alert("Gagal memperbarui profil!");
+            }
+            toggleLoader(false);
+        };
+
+        window.registerAccount = async () => {
+            const u = document.getElementById('reg-user').value.toLowerCase().trim();
+            const p = document.getElementById('reg-pass').value;
+            if(!u || !p) return;
+            toggleLoader(true);
+            try {
+                await set(ref(db, 'user_accounts/' + u), { password: p, age: "" });
+                alert("Anggota berhasil terdaftar!");
+                document.getElementById('reg-user').value = "";
+                document.getElementById('reg-pass').value = "";
+            } catch(e) { alert("Gagal mendaftar!"); }
+            toggleLoader(false);
+        };
+
+        const uploadToCloudinary = async (file) => {
+            const fd = new FormData();
+            fd.append('file', file);
+            fd.append('upload_preset', UPLOAD_PRESET);
+            const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`, { method: 'POST', body: fd });
+            const data = await res.json();
+            return data.secure_url;
+        };
+
+        window.openAddModal = () => {
+            openModal('add-modal');
+            document.getElementById('form-member').classList.toggle('hidden', activeTab !== 'anggota');
+            document.getElementById('form-file').classList.toggle('hidden', activeTab === 'anggota');
+        };
+
+        window.saveData = async () => {
+            toggleLoader(true);
+            try {
+                if(activeTab === 'anggota') {
+                    await push(ref(db, 'members'), { 
+                        name: document.getElementById('add-name').value, 
+                        role: document.getElementById('add-role').value 
+                    });
+                } else {
+                    const f = document.getElementById('inp-file').files[0];
+                    if(!f) { alert("Pilih file!"); toggleLoader(false); return; }
+                    const url = await uploadToCloudinary(f);
+                    const path = activeTab === 'tugas' ? 'tugas' : 'docs';
+                    await push(ref(db, path), { img: url, title: document.getElementById('file-title').value });
+                }
+                closeModal('add-modal');
+                alert("Data berhasil diunggah!");
+            } catch(e) { alert("Gagal simpan data!"); }
+            toggleLoader(false);
+        };
+
+        onValue(ref(db, 'members'), s => {
+            const c = document.getElementById('container-anggota'); c.innerHTML = "";
+            s.forEach(child => {
+                const d = child.val();
+                c.innerHTML += `<div class="animate__animated animate__fadeIn" style="background:white; padding:20px; border-radius:15px; text-align:center; border:1px solid #eee;">
+                    <h3 style="margin:0; color:var(--primary);">${d.name}</h3>
+                    <p style="margin:5px 0 0; color:#777;">${d.role}</p>
+                </div>`;
+            });
+        });
+
+        onValue(ref(db, 'docs'), s => {
+            const c = document.getElementById('container-docs'); c.innerHTML = "";
+            s.forEach(child => {
+                c.innerHTML += `<div class="doc-card animate__animated animate__zoomIn"><img src="${child.val().img}" loading="lazy"></div>`;
+            });
+        });
+
+        onValue(ref(db, 'tugas'), s => {
+            const c = document.getElementById('container-tugas'); c.innerHTML = "";
+            s.forEach(child => {
+                const d = child.val();
+                c.innerHTML += `<div class="task-card animate__animated animate__fadeInUp">
+                    <img src="${d.img}" loading="lazy">
+                    <div class="task-body">
+                        <h4 style="margin:0 0 15px 0;">${d.title || 'Project KOMBIT'}</h4>
+                        <a href="${d.img}" target="_blank" download="Project-KOMBIT.jpg" class="btn btn-success">
+                            <i class="fa-solid fa-download"></i> Download Gambar
+                        </a>
+                    </div>
+                </div>`;
+            });
+        });
+
+    </script>
+</body>
+</html>
