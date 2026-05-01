@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>KOMBIT SMAN 1 Ciampel | Komunitas Belajar IT Terpercaya</title>
+    <meta name="google-site-verification" content="Pck194aLMwD2Spk3tNoWhzRXd7RhN7VLlnKyKS33C54" />
+    
+    <meta name="description" content="KOMBIT (Komunitas Belajar IT) SMAN 1 Ciampel. Wadah kreatif siswa mengeksplorasi coding, robotika, desain grafis, dan AI.">
+    <meta name="keywords" content="KOMBIT, SMAN 1 Ciampel, Ekstrakurikuler IT, Belajar Coding, Robotika, AI, Desain Grafis">
+    
+    <meta property="og:title" content="KOMBIT SMAN 1 Ciampel - Inovasi Digital Siswa">
+    <meta property="og:description" content="Bergabunglah dengan komunitas IT terbaik di SMAN 1 Ciampel. Belajar coding, robotika, dan teknologi masa depan!">
+    <meta property="og:image" content="https://kombit-smansa.github.io/gambar.png">
+    <meta property="og:url" content="https://kombit-smansa.github.io">
+    <meta property="og:type" content="website">
+
+    <link rel="icon" type="image/webp" href="gambar.png">
+    <link rel="shortcut icon" href="gambar.png">
+    <link rel="apple-touch-icon" href="gambar.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <style>
+        :root {
+            --primary: #007bff;
+            --primary-hover: #0056b3;
+            --dark: #2d3436;
+            --light: #f8f9fa;
+            --white: #ffffff;
+            --danger: #d63031;
+            --success: #27ae60;
+            --gold: #f1c40f;
+            --speed: 0.4s;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+            --shadow-md: 0 10px 25px rgba(0,0,0,0.08);
+            --radius: 15px;
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            font-size: 14px; 
+        }
+
+        /* --- Navbar --- */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 10px 5%;
+            box-shadow: var(--shadow-sm);
+            position: sticky; top: 0; z-index: 1000;
+            height: 70px;
+        }
+        .nav-left { display: flex; align-items: center; gap: 12px; }
+        .menu-toggle { font-size: 20px; cursor: pointer; color: var(--dark); padding: 8px; border-radius: 50%; }
+        .brand { font-size: 1.2rem; font-weight: 800; color: var(--primary); text-decoration: none; }
+
+        /* --- Sidebar --- */
+        .sidebar {
+            position: fixed; top: 0; left: -100%; width: 280px; height: 100%;
+            background: var(--white); box-shadow: 10px 0 30px rgba(0,0,0,0.1);
+            transition: all var(--speed) cubic-bezier(0.4, 0, 0.2, 1); z-index: 2000; padding-top: 80px;
+        }
+        .sidebar.active { left: 0; }
+        .sidebar a {
+            display: flex; align-items: center; padding: 14px 25px; color: var(--dark);
+            text-decoration: none; font-weight: 500; border-radius: 0 50px 50px 0; margin: 4px 15px 4px 0;
+            transition: 0.3s; cursor: pointer;
+        }
+        .sidebar-overlay {
+            position: fixed; top:0; left:0; width:100%; height:100%;
+            background: rgba(0,0,0,0.5); display: none; z-index: 1500; backdrop-filter: blur(3px);
+        }
+
+        /* --- Content Layout --- */
+        .tab-content { display: none; padding: 20px 5%; min-height: 85vh; }
+        .tab-content.active { display: block; }
+
+        /* --- Home UI --- */
+        .home-hero {
+            text-align: center;
+            padding: 40px 15px;
+            background: linear-gradient(135deg, #007bff 0%, #00d2ff 100%);
+            border-radius: var(--radius);
+            color: white;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow-md);
+        }
+        .home-hero h1 { color: white; margin: 0 0 10px; font-size: 1.5rem; }
+
+        .about-section {
+            background: white; padding: 25px; border-radius: var(--radius);
+            box-shadow: var(--shadow-sm); margin-bottom: 25px; border-left: 5px solid var(--primary);
+        }
+        .about-section p { margin-bottom: 15px; text-align: justify; }
+
+        .vision-mission-section {
+            background: white; padding: 25px; border-radius: var(--radius);
+            box-shadow: var(--shadow-sm); margin-bottom: 25px; border-right: 5px solid var(--primary);
+        }
+
+        .info-card { background: white; padding: 20px; border-radius: var(--radius); box-shadow: var(--shadow-sm); border-top: 4px solid var(--primary); margin-bottom: 20px; }
+        .info-card h3 { color: var(--primary); margin-top: 0; }
+
+        .schedule-grid {
+            display: grid; grid-template-columns: 1fr; gap: 15px; margin-bottom: 25px;
+        }
+        .schedule-item {
+            background: #fff; padding: 15px; border-radius: var(--radius);
+            box-shadow: var(--shadow-sm); display: flex; align-items: center; gap: 12px;
+        }
+        .schedule-item i { color: var(--primary); font-size: 1.2rem; }
+
+        /* --- Members --- */
+        .member-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+        .member-card { background: white; padding: 15px; border-radius: var(--radius); text-align: center; border: 1px solid #eee; box-shadow: var(--shadow-sm); }
+        .teacher-card { border: 2px solid var(--gold); background: #fffdf2; }
+        .section-label { grid-column: 1 / -1; font-weight: bold; color: var(--primary); border-bottom: 2px solid #eee; margin: 15px 0 5px; padding-bottom: 5px; }
+
+        /* --- Documentation --- */
+        .doc-intro { text-align: center; margin-bottom: 25px; color: #666; font-style: italic; }
+        .doc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+        .doc-card { aspect-ratio: 1/1; overflow: hidden; border-radius: var(--radius); }
+        .doc-card img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* --- Tasks --- */
+        .task-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        .task-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
+        }
+        .task-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            background: #f9f9f9;
+        }
+        .task-body { padding: 15px; text-align: center; }
+        .task-body h4 { margin: 0 0 10px; font-size: 14px; }
+
+        /* --- Password Toggle CSS --- */
+        .pass-wrapper { position: relative; width: 100%; }
+        .pass-wrapper i {
+            position: absolute; right: 15px; top: 15px;
+            cursor: pointer; color: #999;
+        }
+
+        /* --- NEW Progress Bar Overlay --- */
+        .loading-overlay {
+            position: fixed; top:0; left:0; width:100%; height:100%;
+            background: #ffffff; z-index: 10000; display: none;
+            flex-direction: column; justify-content: center; align-items: center;
+        }
+        .progress-container {
+            width: 80%; max-width: 300px;
+            height: 8px; background: #eee;
+            border-radius: 10px; overflow: hidden;
+            margin-top: 20px; position: relative;
+        }
+        .progress-bar {
+            width: 0%; height: 100%;
+            background: var(--primary);
+            box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
+            transition: width 0.1s linear;
+        }
+        .loading-text {
+            font-weight: 800; color: var(--primary);
+            letter-spacing: 1px; font-size: 14px;
+        }
+
+        /* --- Welcome Modal --- */
+        #welcome-modal .modal-box { text-align: center; }
+        .welcome-emoji { font-size: 50px; margin-bottom: 10px; display: block; }
+
+        /* --- Desktop Grid --- */
+        @media (min-width: 992px) {
+            .tab-content { padding: 40px 10%; }
+            .home-hero h1 { font-size: 2.5rem; }
+            .schedule-grid { grid-template-columns: repeat(3, 1fr); }
+            .task-grid { grid-template-columns: repeat(3, 1fr); }
+            .doc-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+            .member-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+            .home-main-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        }
+
+        .loader { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(255,255,255,0.95); display: none; justify-content: center; align-items: center; z-index: 9999; }
+        .hidden { display: none; }
+        .fab { position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background: var(--primary); color: white; border-radius: 50%; display: none; justify-content: center; align-items: center; font-size: 24px; cursor: pointer; box-shadow: 0 8px 20px rgba(0,0,0,0.2); z-index: 1000; }
+        input { width: 100%; padding: 12px; border: 1.5px solid #eee; border-radius: 10px; margin-bottom: 15px; font-family: inherit; }
+        .btn { padding: 10px 20px; border-radius: 12px; border: none; cursor: pointer; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; justify-content: center; }
+        .btn-blue { background: var(--primary); color: white; }
+        .modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.6); z-index: 3000; justify-content: center; align-items: center; }
+        .modal-box { background: white; padding: 25px; border-radius: 20px; width: 90%; max-width: 400px; }
+    </style>
+</head>
+<body>
+
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-text"><i class="fa-solid fa-terminal"></i> INITIALIZING SYSTEM...</div>
+        <div class="progress-container">
+            <div id="progress-bar" class="progress-bar"></div>
+        </div>
+        <p id="progress-percent" style="margin-top:10px; font-weight:bold; color:#999; font-size:12px;">0%</p>
+    </div>
+
+    <div id="loader" class="loader">
+        <i class="fa-solid fa-circle-notch fa-spin" style="color: var(--primary); font-size: 45px;"></i>
+    </div>
+
+    <nav>
+        <div class="nav-left">
+            <i class="fa-solid fa-bars menu-toggle" onclick="toggleSidebar()"></i>
+            <span class="brand">KOMBIT</span>
+        </div>
+        <div id="auth-btn-container">
+            <button class="btn btn-blue" onclick="openModal('auth-modal')">Login</button>
+        </div>
+        <div id="logged-tag" class="hidden">
+            <span id="user-display" style="background:var(--primary); color:white; padding:8px 15px; border-radius:50px; font-size: 12px; font-weight:bold; cursor:pointer;" onclick="switchTab('profil')"></span>
+        </div>
+    </nav>
+
+    <div id="sidebar-overlay" class="sidebar-overlay" onclick="toggleSidebar()"></div>
+    <div id="sidebar" class="sidebar">
+        <div style="padding: 20px; text-align: center;">
+            <img src="gambar.png" style="height: 60px;">
+            <h3 style="margin: 10px 0 0; color: var(--primary);">KOMBIT MENU</h3>
+        </div>
+        <a onclick="switchTab('home')"><i class="fa-solid fa-house"></i> &nbsp; Beranda</a>
+        <a onclick="switchTab('anggota')"><i class="fa-solid fa-users"></i> &nbsp; Anggota</a>
+        <a onclick="switchTab('dokumentasi')"><i class="fa-solid fa-camera"></i> &nbsp; Dokumentasi</a>
+        <a onclick="switchTab('tugas')"><i class="fa-solid fa-laptop-code"></i> &nbsp; Tugas & Proyek</a>
+        <div id="user-menu" class="hidden">
+            <hr style="border:0; border-top: 1px solid #eee; margin: 15px;">
+            <a onclick="switchTab('profil')"><i class="fa-solid fa-user-gear"></i> &nbsp; Profil Saya</a>
+        </div>
+        <div id="admin-menu" class="hidden">
+            <a onclick="switchTab('admin')" style="color: var(--primary);"><i class="fa-solid fa-screwdriver-wrench"></i> &nbsp; Admin Center</a>
+        </div>
+    </div>
+
+    <div id="fab-add" class="fab" onclick="openAddModal()"><i class="fa-solid fa-plus"></i></div>
+
+    <div id="home" class="tab-content active">
+        <div class="home-hero">
+            <h1>Selamat Datang di KOMBIT</h1>
+            <p>Pusat Pengembangan Skill IT & Teknologi SMAN 1 Ciampel</p>
+        </div>
+
+        <div class="about-section">
+            <h2>Apa Itu KOMBIT?</h2>
+            <p>KOMBIT, atau Komunitas Belajar IT, adalah sebuah organisasi ekstrakurikuler yang berdiri di SMAN 1 Ciampel dengan misi besar untuk membekali siswa-siswi dengan kemampuan teknologi informasi yang relevan di era digital. Kami menyadari bahwa sekolah bukan hanya tempat untuk belajar teori, tetapi juga tempat untuk mengasah keterampilan teknis yang bisa langsung diterapkan di dunia nyata.</p>
+            <p>Komunitas ini dirancang sebagai tempat bagi siapa saja yang memiliki rasa ingin tahu tinggi terhadap teknologi, tanpa memandang latar belakang jurusan. Di sini, setiap anggota didorong untuk bereksplorasi, mulai dari hal yang paling dasar hingga tingkat lanjut melalui kolaborasi antar siswa dan bimbingan guru pembimbing yang ahli di bidangnya.</p>
+            <p>Kami menerapkan metode belajar yang santai namun tetap terarah, di mana setiap anggota dibebaskan untuk fokus pada bidang IT yang paling mereka sukai. Dengan suasana belajar yang kekeluargaan, KOMBIT menjadi rumah kedua bagi para siswa untuk berbagi ide kreatif dan memecahkan berbagai tantangan teknologi bersama-sama.</p>
+            <p>Lebih dari sekadar belajar komputer, KOMBIT bertujuan menciptakan generasi kreator, bukan sekadar pengguna. Kami ingin siswa SMAN 1 Ciampel mampu berinovasi dan bersaing dalam perkembangan teknologi yang sangat cepat, sehingga siap menghadapi masa depan dengan kepercayaan diri yang tinggi.</p>
+        </div>
+
+        <div class="vision-mission-section">
+            <h2>Visi & Misi</h2>
+            <div style="margin-bottom: 15px;">
+                <h4 style="color: var(--primary); margin-bottom: 5px;"><i class="fa-solid fa-eye"></i> Visi</h4>
+                <p>Terwujudnya komunitas belajar yang inovatif, kreatif, dan unggul di bidang teknologi informasi guna mencetak generasi digital yang kompeten dan berintegritas.</p>
+            </div>
+            <div>
+                <h4 style="color: var(--primary); margin-bottom: 5px;"><i class="fa-solid fa-bullseye"></i> Misi</h4>
+                <ul style="padding-left: 20px; margin: 0;">
+                    <li>Menyediakan wadah eksplorasi teknologi yang inklusif bagi seluruh siswa.</li>
+                    <li>Menyelenggarakan kegiatan pelatihan rutin yang fokus pada keterampilan praktis IT.</li>
+                    <li>Membangun semangat kolaborasi melalui proyek berbasis teknologi.</li>
+                    <li>Mendorong pemanfaatan teknologi yang positif dan produktif bagi lingkungan sekolah.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="home-main-layout">
+            <div class="info-card">
+                <h3><i class="fa-solid fa-layer-group"></i> Materi Yang Dipelajari</h3>
+                <ul style="padding-left: 20px;">
+                    <li><strong>Web Development:</strong> Belajar membuat website dari nol dengan HTML, CSS, dan JavaScript.</li>
+                    <li><strong>Robotika & IoT:</strong> Merakit alat otomatis dan perangkat cerdas berbasis mikrokontroler.</li>
+                    <li><strong>Microsoft Office:</strong> Pengolahan dokumen, presentasi, dan data secara profesional.</li>
+                    <li><strong>Desain Grafis:</strong> Kreativitas visual menggunakan tools desain untuk berbagai kebutuhan.</li>
+                    <li><strong>Lainnya:</strong> AI, Troubleshooting hardware, dan dasar-dasar keamanan siber.</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h3><i class="fa-solid fa-award"></i> Manfaat Bergabung</h3>
+                <ul style="padding-left: 20px;">
+                    <li>Meningkatkan skill digital yang sangat dicari di dunia kerja.</li>
+                    <li>Membangun portofolio melalui proyek-proyek nyata.</li>
+                    <li>Menambah relasi teman dengan minat yang sama.</li>
+                    <li>Mendapatkan sertifikat kegiatan untuk keperluan akademik/karir.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="schedule-grid">
+            <div class="schedule-item"><i class="fa-solid fa-map-location-dot"></i> <div><strong>Lokasi:</strong><br>Ruang Lab Komputer</div></div>
+            <div class="schedule-item"><i class="fa-solid fa-calendar-alt"></i> <div><strong>Jadwal:</strong><br>Senin & Jumat (Selesai Sekolah)</div></div>
+            <div class="schedule-item"><i class="fa-solid fa-gift"></i> <div><strong>Biaya:</strong><br>100% Gratis Tanpa Biaya</div></div>
+        </div>
+
+        <div style="text-align: center; padding: 30px 15px; background: #fff; border-radius: var(--radius); border: 1px dashed var(--primary); margin-top: 20px;">
+            <i class="fa-solid fa-quote-left" style="color: var(--primary); font-size: 20px;"></i>
+            <p style="font-style: italic;">"Jangan takut untuk memulai. Setiap ahli berawal dari seorang pemula yang tidak pernah berhenti mencoba. Di KOMBIT, kita tumbuh bersama teknologi!"</p>
+            <strong>— Salam KOMBIT Team</strong>
+        </div>
+    </div>
+
+    <div id="anggota" class="tab-content">
+        <h2 style="text-align: center; color: var(--primary);">Keluarga KOMBIT</h2>
+        <div id="container-anggota" class="member-grid"></div>
+    </div>
+
+    <div id="dokumentasi" class="tab-content">
+        <h2 style="text-align: center; color: var(--primary);">Galeri Dokumentasi</h2>
+        <div class="doc-intro">
+            "Mengabadikan setiap langkah kecil menuju kesuksesan besar. Berikut adalah momen-momen seru belajar dan berkarya di KOMBIT."
+        </div>
+        <div id="container-docs" class="doc-grid"></div>
+    </div>
+
+    <div id="tugas" class="tab-content">
+        <div id="task-locked" style="text-align: center; padding: 50px 20px; background: white; border-radius: var(--radius); box-shadow: var(--shadow-md); max-width: 400px; margin: 40px auto; border: 1px solid #eee;">
+            <div style="font-size: 50px; color: var(--primary); margin-bottom: 15px;"><i class="fa-solid fa-lock"></i></div>
+            <h3>Area Terbatas</h3>
+            <p style="color:#666; margin-bottom: 20px;">Halaman ini hanya bisa diakses oleh anggota terdaftar. Silahkan login untuk melihat tugas.</p>
+            <button class="btn btn-blue" style="width: 100%;" onclick="openModal('auth-modal')">Login Sekarang</button>
+        </div>
+        <div id="task-unlocked" class="hidden">
+            <h2 style="text-align: center; color: var(--primary);">Repositori Tugas</h2>
+            <div id="container-tugas" class="task-grid"></div>
+        </div>
+    </div>
+
+    <div id="profil" class="tab-content">
+        <h2 style="text-align: center;">Profil</h2>
+        <div style="background:white; padding:25px; border-radius:15px; box-shadow:var(--shadow-md); max-width:400px; margin:0 auto;">
+            <label>Username</label><input type="text" id="prof-user" readonly style="background:#f9f9f9;">
+            <label>Umur</label><input type="number" id="prof-age">
+            <label>Password</label>
+            <div class="pass-wrapper">
+                <input type="password" id="prof-pass">
+                <i class="fa-solid fa-eye" onclick="togglePass('prof-pass', this)"></i>
+            </div>
+            <button class="btn btn-blue" style="width:100%;" onclick="updateProfile()">Simpan Perubahan</button>
+            <button class="btn" style="width:100%; margin-top:10px; color:var(--danger);" onclick="location.reload()">Logout</button>
+        </div>
+    </div>
+
+    <div id="auth-modal" class="modal" onclick="if(event.target==this) closeModal('auth-modal')">
+        <div class="modal-box">
+            <h3 style="text-align:center;">Login Member</h3>
+            <input type="text" id="auth-user" placeholder="Username">
+            <div class="pass-wrapper">
+                <input type="password" id="auth-pass" placeholder="Password">
+                <i class="fa-solid fa-eye" onclick="togglePass('auth-pass', this)"></i>
+            </div>
+            <button class="btn btn-blue" style="width:100%; margin-top: 10px;" onclick="handleAuth()">Masuk</button>
+        </div>
+    </div>
+
+    <div id="welcome-modal" class="modal">
+        <div class="modal-box animate__animated animate__zoomIn">
+            <span class="welcome-emoji">😁</span>
+            <h3 id="welcome-msg" style="color:var(--primary);"></h3>
+            <p style="color:#666;">Akses member telah dibuka. Selamat belajar!</p>
+            <button class="btn btn-blue" style="width:100%; margin-top:15px;" onclick="closeModal('welcome-modal')">Mulai Eksplorasi</button>
+        </div>
+    </div>
+
+    <div id="add-modal" class="modal" onclick="if(event.target==this) closeModal('add-modal')">
+        <div class="modal-box">
+            <h3 id="add-label">Tambah Data</h3>
+            <div id="form-member" class="hidden">
+                <input type="text" id="add-name" placeholder="Nama Lengkap">
+                <input type="text" id="add-role" placeholder="Jabatan (Misal: Siswa / Siswi)">
+            </div>
+            <div id="form-file" class="hidden">
+                <input type="text" id="file-title" placeholder="Judul">
+                <input type="file" id="inp-file" accept="image/*">
+            </div>
+            <button class="btn btn-blue" style="width:100%;" onclick="saveData()">Simpan</button>
+        </div>
+    </div>
+
+    <div id="admin" class="tab-content">
+        <h2 style="text-align: center;">Panel Admin</h2>
+        <div style="background:white; padding:25px; border-radius:15px; box-shadow: var(--shadow-sm);">
+            <input type="text" id="reg-user" placeholder="Username Member Baru">
+            <input type="password" id="reg-pass" placeholder="Password">
+            <button class="btn btn-blue" style="width:100%;" onclick="registerAccount()">Daftarkan</button>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+        import { getDatabase, ref, set, push, onValue, get, child } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBzgH_m_c5eByRtq-S4FgRJA9fbRkcucCw",
+            authDomain: "kombit-sman-1-ciampel.firebaseapp.com",
+            projectId: "kombit-sman-1-ciampel",
+            databaseURL: "https://kombit-sman-1-ciampel-default-rtdb.asia-southeast1.firebasedatabase.app"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const CLOUD_NAME = "dkdrswniz";
+        const UPLOAD_PRESET = "Kombit";
+
+        let isAdmin = false; let currentUser = ""; let activeTab = 'home';
+        const toggleLoader = (show) => document.getElementById('loader').style.display = show ? 'flex' : 'none';
+
+        window.togglePass = (id, icon) => {
+            const inp = document.getElementById(id);
+            if(inp.type === 'password') {
+                inp.type = 'text';
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                inp.type = 'password';
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        };
+
+        window.toggleSidebar = () => {
+            const sb = document.getElementById('sidebar');
+            const ov = document.getElementById('sidebar-overlay');
+            sb.classList.toggle('active');
+            ov.style.display = sb.classList.contains('active') ? 'block' : 'none';
+        };
+
+        window.switchTab = (id) => {
+            activeTab = id;
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            document.getElementById('fab-add').style.display = (isAdmin && !['home','admin','profil'].includes(id)) ? 'flex' : 'none';
+            if(window.innerWidth < 992) toggleSidebar();
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        };
+
+        window.openModal = (id) => document.getElementById(id).style.display = 'flex';
+        window.closeModal = (id) => document.getElementById(id).style.display = 'none';
+
+        window.handleAuth = async () => {
+            const u = document.getElementById('auth-user').value.toLowerCase().trim();
+            const p = document.getElementById('auth-pass').value;
+            if(!u || !p) return;
+            toggleLoader(true);
+            try {
+                const admSnap = await get(child(ref(db), 'admin_accounts/' + u));
+                if(admSnap.exists() && admSnap.val().password === p) {
+                    isAdmin = true; currentUser = u;
+                    runProgressBar(() => loginSuccess("ADMIN", true, admSnap.val()));
+                } else {
+                    const userSnap = await get(child(ref(db), 'user_accounts/' + u));
+                    if(userSnap.exists() && userSnap.val().password === p) {
+                        isAdmin = false; currentUser = u;
+                        runProgressBar(() => loginSuccess(u.toUpperCase(), false, userSnap.val()));
+                    } else { alert("User/Pass Salah!"); }
+                }
+            } catch(e) {}
+            toggleLoader(false);
+        };
+
+        const runProgressBar = (callback) => {
+            const overlay = document.getElementById('loading-overlay');
+            const bar = document.getElementById('progress-bar');
+            const pct = document.getElementById('progress-percent');
+            overlay.style.display = 'flex';
+            
+            let width = 0;
+            const interval = setInterval(() => {
+                if (width >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        overlay.style.display = 'none';
+                        bar.style.width = '0%';
+                        callback();
+                    }, 500);
+                } else {
+                    width += 2; // Increment speed (untuk total 2 detik)
+                    bar.style.width = width + '%';
+                    pct.innerText = width + '%';
+                }
+            }, 40); // 40ms * 50 steps = 2000ms
+        };
+
+        const loginSuccess = (name, isAdm, userData) => {
+            document.getElementById('logged-tag').classList.remove('hidden');
+            document.getElementById('auth-btn-container').classList.add('hidden');
+            document.getElementById('user-display').innerText = name;
+            document.getElementById('task-locked').classList.add('hidden');
+            document.getElementById('task-unlocked').classList.remove('hidden');
+            document.getElementById('user-menu').classList.remove('hidden');
+            document.getElementById('prof-user').value = currentUser;
+            document.getElementById('prof-age').value = userData.age || "";
+            document.getElementById('prof-pass').value = userData.password || "";
+            if(isAdm) { document.getElementById('admin-menu').classList.remove('hidden'); document.getElementById('fab-add').style.display = 'flex'; }
+            
+            document.getElementById('welcome-msg').innerText = `Selamat datang ${name} di web KOMBIT!`;
+            closeModal('auth-modal');
+            openModal('welcome-modal');
+        };
+
+        window.updateProfile = async () => {
+            toggleLoader(true);
+            const path = isAdmin ? 'admin_accounts/' : 'user_accounts/';
+            await set(ref(db, path + currentUser), { password: document.getElementById('prof-pass').value, age: document.getElementById('prof-age').value });
+            alert("Berhasil!"); toggleLoader(false);
+        };
+
+        window.registerAccount = async () => {
+            const u = document.getElementById('reg-user').value.toLowerCase().trim();
+            const p = document.getElementById('reg-pass').value;
+            if(!u || !p) return;
+            toggleLoader(true);
+            await set(ref(db, 'user_accounts/' + u), { password: p, age: 0 });
+            alert("Akun Terdaftar!"); toggleLoader(false);
+        };
+
+        const uploadToCloudinary = async (file) => {
+            const fd = new FormData(); fd.append('file', file); fd.append('upload_preset', UPLOAD_PRESET);
+            const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`, { method: 'POST', body: fd });
+            const data = await res.json(); return data.secure_url;
+        };
+
+        window.openAddModal = () => {
+            openModal('add-modal');
+            document.getElementById('form-member').classList.toggle('hidden', activeTab !== 'anggota');
+            document.getElementById('form-file').classList.toggle('hidden', activeTab === 'anggota');
+        };
+
+        window.saveData = async () => {
+            toggleLoader(true);
+            try {
+                if(activeTab === 'anggota') {
+                    await push(ref(db, 'members'), { name: document.getElementById('add-name').value, role: document.getElementById('add-role').value });
+                } else {
+                    const f = document.getElementById('inp-file').files[0];
+                    if(!f) return;
+                    const url = await uploadToCloudinary(f);
+                    const path = activeTab === 'tugas' ? 'tugas' : 'docs';
+                    await push(ref(db, path), { img: url, title: document.getElementById('file-title').value });
+                }
+                closeModal('add-modal');
+            } catch(e) {}
+            toggleLoader(false);
+        };
+
+        onValue(ref(db, 'members'), s => {
+            const c = document.getElementById('container-anggota'); c.innerHTML = "";
+            let list = []; s.forEach(child => { list.push(child.val()); });
+            list.sort((a, b) => a.name.localeCompare(b.name));
+            
+            const teachers = list.filter(m => m.role.toLowerCase().includes('guru'));
+            const boys = list.filter(m => !m.role.toLowerCase().includes('guru') && m.role.toLowerCase().includes('siswa'));
+            const girls = list.filter(m => !m.role.toLowerCase().includes('guru') && m.role.toLowerCase().includes('siswi'));
+            const otherStudents = list.filter(m => !m.role.toLowerCase().includes('guru') && !m.role.toLowerCase().includes('siswa') && !m.role.toLowerCase().includes('siswi'));
+
+            if(teachers.length > 0) {
+                c.innerHTML += `<div class="section-label">GURU PEMBIMBING</div>`;
+                teachers.forEach(d => { c.innerHTML += `<div class="member-card teacher-card"><h3>${d.name}</h3><p>${d.role}</p></div>`; });
+            }
+            if(boys.length > 0) {
+                c.innerHTML += `<div class="section-label">DAFTAR SISWA (LAKI-LAKI)</div>`;
+                boys.forEach(d => { c.innerHTML += `<div class="member-card"><h3>${d.name}</h3><p>${d.role}</p></div>`; });
+            }
+            if(girls.length > 0) {
+                c.innerHTML += `<div class="section-label">DAFTAR SISWI (PEREMPUAN)</div>`;
+                girls.forEach(d => { c.innerHTML += `<div class="member-card"><h3>${d.name}</h3><p>${d.role}</p></div>`; });
+            }
+            if(otherStudents.length > 0) {
+                c.innerHTML += `<div class="section-label">ANGGOTA LAINNYA</div>`;
+                otherStudents.forEach(d => { c.innerHTML += `<div class="member-card"><h3>${d.name}</h3><p>${d.role}</p></div>`; });
+            }
+        });
+
+        onValue(ref(db, 'docs'), s => {
+            const c = document.getElementById('container-docs'); c.innerHTML = "";
+            s.forEach(child => { c.innerHTML += `<div class="doc-card animate__animated animate__fadeIn"><img src="${child.val().img}" loading="lazy"></div>`; });
+        });
+
+        onValue(ref(db, 'tugas'), s => {
+            const c = document.getElementById('container-tugas'); c.innerHTML = "";
+            s.forEach(child => {
+                const d = child.val();
+                c.innerHTML += `<div class="task-card">
+                    <img src="${d.img}" loading="lazy">
+                    <div class="task-body">
+                        <h4>${d.title || 'Materi/Tugas'}</h4>
+                        <a href="${d.img}" target="_blank" class="btn btn-blue" style="font-size: 12px; padding: 8px 15px;">Buka Materi</a>
+                    </div>
+                </div>`;
+            });
+        });
+    </script>
+</body>
+</html>
